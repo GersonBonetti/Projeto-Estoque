@@ -1,0 +1,116 @@
+﻿@model IEnumerable<Sln.Estoque.Domain.DTO.ProductDTO>
+
+@{
+	ViewData["Title"] = "Produtos";
+	int contador = 0;
+}
+
+<div class="d-flex align-middle justify-content-between">
+	<p>
+		<a class="btn btn-dark" asp-action="Create">Novo Produto</a>
+	</p>
+	<div class="input mb-3 col-3 d-flex justify-content-end align-middle">
+		<button onclick="showBar()" type="submit" class="buttonBar btn btn-outline-sucess">
+			<img src="~/img/products/search.png" width="30" class="m-1 align-middle" />
+		</button>
+		<input type="text" id="myInput" class="searchBar form-control input-home" placeholder="Pesquisar...(código ou nome)">
+	</div>
+</div>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th class="text-center">
+				Nº
+			</th>
+			<th class="text-center">
+				@Html.DisplayNameFor(model => model.codigoProduto)
+			</th>
+			<th class="text-center">
+				@Html.DisplayNameFor(model => model.nome)
+			</th>
+			<th class="text-center">
+				@Html.DisplayNameFor(model => model.quantidade)
+			</th>
+			<th class="text-center">
+				@Html.DisplayNameFor(model => model.preco)
+			</th>
+			<th class="text-center">
+				@Html.DisplayNameFor(model => model.categoryId)
+			</th>
+			<th class="text-center">
+				@Html.DisplayNameFor(model => model.horaAtualizada)
+			</th>
+			<th class="text-center">Ações</th>
+		</tr>
+	</thead>
+	<tbody id="tabelaIndex">
+		@foreach (var item in Model)
+		{
+			<tr>
+				@{
+					contador++;
+					<td class="text-center align-middle">
+						@contador
+					</td>
+				}
+				<td class="text-center align-middle">
+					@Html.DisplayFor(modelItem => item.codigoProduto)
+				</td>
+				<td class="text-center align-middle">
+					@Html.DisplayFor(modelItem => item.nome)
+				</td>
+				<td class="text-center align-middle">
+					@Html.DisplayFor(modelItem => item.quantidade)
+				</td>
+				<td class="text-center align-middle">
+					R$ @Html.DisplayFor(modelItem => item.preco)
+				</td>
+				@foreach (var idCategoria in ViewBag.Categorias)
+				{
+					if (idCategoria.id == item.categoryId)
+					{
+						<td class="text-center align-middle">
+							@idCategoria.name
+						</td>
+					}
+				}
+				<td class="text-center align-middle">
+					@Html.DisplayFor(modelItem => item.horaAtualizada)
+				</td>
+				<td class="text-center align-middle">
+					<a class="btn btn-secondary" asp-action="Edit" asp-route-id="@item.id">Editar</a>
+					<a class="btn btn-danger" href="#" onclick="deleteProduct(@item.id, '@item.nome')">Deletar</a>
+				</td>
+				@Html.Hidden("idNome", item.nome)
+			</tr>
+		}
+	</tbody>
+</table>
+
+<div class="modal" id="modal" tabindex="-1"></div>
+
+@section Scripts
+	{
+	<script>
+		const deleteProduct = (idParam, nome) => {
+			debugger;
+			msgModalMessage(`Deseja realmente excluir o registro "${nome}"`, () => {
+				$.ajax({
+					url: `@Url.Action("Delete")`,
+					method: 'POST',
+					data: {
+						id: idParam
+					},
+					success: (resp) => {
+						if (resp.code == '200') {
+							liveToastMessage(`O Registro "${nome}" foi excluído.`, 'Produto');
+							setTimeout(() => { window.location.reload(); }, 3000);
+						}
+					}
+				});
+				closeMsgModalMessage();
+			});
+		}
+	</script>
+}

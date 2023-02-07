@@ -1,0 +1,51 @@
+﻿@model Sln.Estoque.Domain.DTO.ProductDTO
+
+@{
+    ViewData["Title"] = "Adicionar Produto";
+}
+
+<h1>Adicionar novo produto</h1>
+
+<h4>Produtos</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4 my-3">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group my-3">
+                <label asp-for="codigoProduto" class="control-label mb-1"></label>
+                <input asp-for="codigoProduto" class="form-control border-dark" />
+                <span asp-validation-for="codigoProduto" class="text-danger"></span>
+            </div>
+            <div class="form-group my-3">
+                <label asp-for="nome" class="control-label mb-1"></label>
+                <input asp-for="nome" class="form-control border-dark" />
+                <span asp-validation-for="nome" class="text-danger"></span>
+            </div>
+            <div class="form-group my-3">
+                <label class="control-label">Quantidade</label>
+                <input asp-for="quantidade" class="form-control border-dark" min="0" />
+                <span asp-validation-for="quantidade" class="text-danger"></span>
+            </div>
+            <div class="form-group my-3">
+                <label asp-for="preco" class="control-label mb-1"></label>
+                <div class="input-group">
+                    <span class="input-group-text border-dark">R$</span>
+                    <input asp-for="preco" id="value" onkeyup="valueCheck()" class="form-control d-block border-dark" maxlength="12" min="0.00" />
+                </div>
+                <span asp-validation-for="preco" class="text-danger"></span>
+            </div>
+            <div class="form-group my-3">
+                <label asp-for="categoryId" class="control-label mb-1"></label>
+                <select asp-for="categoryId" class="form-control border-dark" asp-items="ViewBag.categoryId"></select>
+            </div>
+            <div class="form-group my-3">
+                <input type="submit" value="Adicionar" class="btn btn-dark" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="mb-5">
+    <a asp-action="Index" class="text-decoration-none link-dark">Voltar para a lista</a>
+</div>

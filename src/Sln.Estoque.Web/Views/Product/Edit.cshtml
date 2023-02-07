@@ -1,0 +1,62 @@
+﻿@model Sln.Estoque.Domain.DTO.ProductDTO
+
+<h1>Editar</h1>
+
+<h4>Produto</h4>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="id" />
+            <div class="form-group my-3">
+                <label asp-for="codigoProduto" class="control-label"></label>
+                <input asp-for="codigoProduto" class="form-control border-dark border-dark" />
+                <span asp-validation-for="codigoProduto" class="text-danger"></span>
+            </div>
+            <div class="form-group my-3">
+                <label asp-for="nome" class="control-label"></label>
+                <input asp-for="nome" class="form-control border-dark" />
+                <span asp-validation-for="nome" class="text-danger"></span>
+            </div>
+            <div class="form-group my-3">
+                <label class="control-label">Quantidade</label>
+                <input asp-for="quantidade" class="form-control border-dark" />
+                <span asp-validation-for="quantidade" class="text-danger"></span>
+            </div>
+            <div class="form-group my-3">
+                <label asp-for="preco" class="control-label mb-1"></label>
+                <div class="input-group">
+                    <span class="input-group-text border-dark">R$</span>
+                    <input asp-for="preco" id="value" onkeyup="valueCheck()" class="form-control d-block border-dark" maxlength="12" />
+                </div>
+                <span asp-validation-for="preco" class="text-danger"></span>
+            </div>
+            <div class="form-group my-3">
+                <label asp-for="category" class="control-label mb-1"></label>
+                <select asp-for="category" class="form-control border-dark" asp-items="ViewBag.Categorias"></select>
+            </div>
+
+
+            @*A edição para o parâmetro de categoria aqui precisaria ser diferente.
+            No momento está como o ID da categoria correspondente,
+            mas o idela seria que fosse como o nome da categoria.
+            Para isso, posso fazer um loop foreach como foi feito no Index dos Products.
+            *@
+
+            <div class="form-group my-3">
+                <label asp-for="categoryId" class="control-label mb-1"></label>
+                <input asp-for="categoryId" class="form-control border-dark" />
+                <span asp-validation-for="categoryId" class="text-danger"></span>
+            </div>
+            <div class="form-group my-3 my-4">
+                <input type="submit" value="Salvar" class="btn btn-dark" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="mb-5">
+    <a asp-action="Index" class="text-decoration-none link-dark">Voltar para a lista</a>
+</div>

@@ -1,0 +1,60 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    background: #f5f4f3;
+}
+
+.btn {
+    border-radius: 8px;
+}
+
+.tbody td {
+    padding: 30px;
+}
+
+.tbody tr:nth-child(odd) {
+    background-color: #f5f4f3;
+    color: #fff;
+}
+
+.navbar {
+    background: #0b090a;
+}
+
+.footer {
+    background: #0b090a;
+}
+
+.input-home {
+    border-color: black;
+}
+
+.input-home::placeholder {
+        text-align: center;
+        font-style: italic;
+}
+
+
+.buttonBar, .searchBar
+{
+    animation: slide 1s 1:
+}
+
+.searchBar
+{
+    display: none;
+}
