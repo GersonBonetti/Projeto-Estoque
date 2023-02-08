@@ -1,4 +1,4 @@
-# Sln.Estoque
+# Sistema de gerenciamento para pequenos estoques.
 
 Projeto de Estoque para o curso +Devs2Blu, utilizando C#, ASP.NET, MVC, Entity Framework, Bootstrap, Jquery e arquitetura DDD.
 ![1](https://user-images.githubusercontent.com/87243693/217405454-f657eea1-c962-49ee-8637-9b1fd34718e4.png)
