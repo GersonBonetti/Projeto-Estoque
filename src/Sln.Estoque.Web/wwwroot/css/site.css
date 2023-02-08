@@ -48,13 +48,17 @@ body {
         font-style: italic;
 }
 
-
 .buttonBar, .searchBar
 {
-    animation: slide 1s 1:
+    animation: 5s ease-in 1s;
 }
 
 .searchBar
 {
     display: none;
+}
+
+.btn:focus,.btn-active {
+    outline: none !important;
+    box-shadow: none;
 }
